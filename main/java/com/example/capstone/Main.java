@@ -92,14 +92,6 @@ public class Main extends Application {
         login.setTranslateY(50.0D);
         root.getChildren().addAll(new Node[]{new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\MainB.png"), wSide, login, userText, pwdText, pw, userName, menuTitle});
 
-        /*Image icon = new Image("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\icon.png");
-        primaryStage.getIcons().add(icon);
-
-        //customizing size of the stage
-        primaryStage.setTitle("TutorU");
-        primaryStage.setWidth(1280.0D);
-        primaryStage.setHeight(720.0D);*/
-
         return new Scene(root);
     }
 
