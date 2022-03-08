@@ -8,6 +8,8 @@ package com.example.capstone;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Stack;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,6 +28,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -97,8 +101,60 @@ public class Main extends Application {
 
     protected Scene HomeLobbyScene(){
         StackPane root = new StackPane();
-        Label userName = new Label("Username:");
-        root.getChildren().add(userName);
+        //Label userName = new Label("Username:");
+        //profile pic addition
+        ImageView background = new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\default.png");
+        Button pp = new Button("", background);
+        pp.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
+        pp.setOnMouseEntered((e) -> {
+            pp.setStyle("-fx-background-color: #DBDBC3; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
+        });
+        pp.setOnMouseExited((e) -> {
+            pp.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
+        });
+        StackPane.setAlignment(pp, Pos.TOP_RIGHT);
+        pp.setMaxSize(55,66);
+        pp.setTranslateX(-20);
+        pp.setTranslateY(10);
+        //create tan panels
+        Shape tSide = new Rectangle(1280.0D, 100.0D, Paint.valueOf("#C2C2AA"));
+        StackPane.setAlignment(tSide, Pos.TOP_CENTER);
+        Shape rSide = new Rectangle(100.0D, 720.0D, Paint.valueOf("#DBDBC3"));
+        StackPane.setAlignment(rSide, Pos.CENTER_RIGHT);
+        //create buttons in the left bottom corner
+        Button jServer = new Button("Join Session");
+        Button hServer = new Button("Host Session");
+        Button settings = new Button("Settings");
+        jServer.setBackground(null);//make backgrounds clear so the button is just text
+        hServer.setBackground(null);
+        settings.setBackground(null);
+        //set button font styles
+        jServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
+        hServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
+        settings.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
+
+        //create fading when mouseover
+        jServer.setOnMouseEntered((e) -> {jServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #000000; -fx-font-size: 2em; -fx-opacity: 0.75; -fx-font-weight: bold");});
+        jServer.setOnMouseExited((e) -> {jServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-opacity: 1.0; -fx-font-weight: bold");});
+        hServer.setOnMouseEntered((e) -> {hServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #000000; -fx-font-size: 2em; -fx-opacity: 0.75; -fx-font-weight: bold");});
+        hServer.setOnMouseExited((e) -> {hServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-opacity: 1.0; -fx-font-weight: bold");});
+        settings.setOnMouseEntered((e) -> {settings.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #000000; -fx-font-size: 2em; -fx-opacity: 0.75; -fx-font-weight: bold");});
+        settings.setOnMouseExited((e) -> {settings.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-opacity: 1.0; -fx-font-weight: bold");});
+
+        //set positioning of buttons
+        StackPane.setAlignment(jServer, Pos.CENTER_LEFT);
+        StackPane.setAlignment(hServer, Pos.CENTER_LEFT);
+        StackPane.setAlignment(settings, Pos.CENTER_LEFT);
+        jServer.setTranslateX(10);
+        hServer.setTranslateX(10);
+        settings.setTranslateX(10);
+        jServer.setTranslateY(-200);
+        hServer.setTranslateY(-150);
+        settings.setTranslateY(-100);
+
+
+
+        root.getChildren().addAll(new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\online.jpg"),rSide,tSide, pp, jServer, hServer, settings);
         return new Scene(root);
     }
 
