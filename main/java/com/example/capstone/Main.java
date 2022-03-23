@@ -116,19 +116,37 @@ public class Main extends Application {
         pp.setMaxSize(55,66);
         pp.setTranslateX(-20);
         pp.setTranslateY(10);
+        //create settings button with gear icon
+        ImageView gear = new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\settings.png");
+        Button st = new Button("", gear);
+        st.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
+        st.setOnMouseEntered((e) -> {
+            st.setStyle("-fx-background-color: #DBDBC3; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
+        });
+        st.setOnMouseExited((e) -> {
+            st.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
+        });
+        StackPane.setAlignment(st, Pos.TOP_RIGHT);
+        st.setMaxSize(55,66);
+        st.setTranslateX(-100);
+        st.setTranslateY(10);
+
         //create tan panels
         Shape tSide = new Rectangle(1280.0D, 100.0D, Paint.valueOf("#C2C2AA"));
         StackPane.setAlignment(tSide, Pos.TOP_CENTER);
         Shape rSide = new Rectangle(100.0D, 720.0D, Paint.valueOf("#DBDBC3"));
         StackPane.setAlignment(rSide, Pos.CENTER_RIGHT);
         //create buttons in the left bottom corner
-        Button jServer = new Button("Join Session");
-        Button hServer = new Button("Host Session");
+        Button jServer = new Button("Join");
+        Button hServer = new Button("Host");
         Button settings = new Button("Settings");
         jServer.setBackground(null);//make backgrounds clear so the button is just text
         hServer.setBackground(null);
         settings.setBackground(null);
-        //set button font styles
+        //Font font = Font.font("Courier New", FontWeight.BOLD, 24);
+        // jServer.setFont(font);//set fonts
+        // hServer.setFont(font);
+        // settings.setFont(font);
         jServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
         hServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
         settings.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
@@ -142,19 +160,19 @@ public class Main extends Application {
         settings.setOnMouseExited((e) -> {settings.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-opacity: 1.0; -fx-font-weight: bold");});
 
         //set positioning of buttons
-        StackPane.setAlignment(jServer, Pos.CENTER_LEFT);
-        StackPane.setAlignment(hServer, Pos.CENTER_LEFT);
-        StackPane.setAlignment(settings, Pos.CENTER_LEFT);
-        jServer.setTranslateX(10);
-        hServer.setTranslateX(10);
-        settings.setTranslateX(10);
-        jServer.setTranslateY(-200);
-        hServer.setTranslateY(-150);
-        settings.setTranslateY(-100);
+        StackPane.setAlignment(jServer, Pos.TOP_LEFT);
+        StackPane.setAlignment(hServer, Pos.TOP_LEFT);
+        StackPane.setAlignment(settings, Pos.TOP_LEFT);
+        jServer.setTranslateX(20);
+        hServer.setTranslateX(90);
+        settings.setTranslateX(165);
+        jServer.setTranslateY(25);
+        hServer.setTranslateY(25);
+        settings.setTranslateY(25);
 
 
 
-        root.getChildren().addAll(new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\online.jpg"),rSide,tSide, pp, jServer, hServer, settings);
+        root.getChildren().addAll(new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\online.jpg"),rSide,tSide, pp, st, jServer, hServer, settings);
         return new Scene(root);
     }
 
