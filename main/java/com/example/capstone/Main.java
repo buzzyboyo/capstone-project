@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Stack;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
@@ -60,13 +60,13 @@ public class Main extends Application {
             login.setStyle("-fx-background-color: #948c7e; -fx-font-size: 2em; -fx-text-fill: #ffffff");
         });
         login.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                stage.setScene(HomeLobbyScene());
-            }
-        });
+              @Override
+              public void handle(ActionEvent t) {
+                  stage.setScene(HomeLobbyScene());
+              }
+          });
 
-        login.setStyle("-fx-background-color: #948c7e; -fx-font-size: 2em; -fx-text-fill: #ffffff");
+                login.setStyle("-fx-background-color: #948c7e; -fx-font-size: 2em; -fx-text-fill: #ffffff");
         Shape wSide = new Rectangle(350.0D, 720.0D, Paint.valueOf("ffffff"));
         TextField userText = new TextField();
         userText.setMaxWidth(150.0D);
@@ -116,20 +116,51 @@ public class Main extends Application {
         pp.setMaxSize(55,66);
         pp.setTranslateX(-20);
         pp.setTranslateY(10);
-        //create settings button with gear icon
-        ImageView gear = new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\settings.png");
-        Button st = new Button("", gear);
-        st.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
-        st.setOnMouseEntered((e) -> {
-            st.setStyle("-fx-background-color: #DBDBC3; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
+        //create brightness button with sun icon
+        ImageView sun = new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\sun.png");
+        Button brt = new Button("", sun);
+        brt.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 35px; -fx-min-height: 35px; -fx-max-width: 35px; -fx-max-height: 35px");
+        brt.setOnMouseEntered((e) -> {
+            brt.setStyle("-fx-background-color: #DBDBC3; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 35px; -fx-min-height: 35px; -fx-max-width: 35px; -fx-max-height: 35px");
         });
-        st.setOnMouseExited((e) -> {
-            st.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 70px; -fx-min-height: 75px; -fx-max-width: 70px; -fx-max-height: 75px");
+        brt.setOnMouseExited((e) -> {
+            brt.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 35px; -fx-min-height: 35px; -fx-max-width: 35px; -fx-max-height: 35px");
         });
-        StackPane.setAlignment(st, Pos.TOP_RIGHT);
-        st.setMaxSize(55,66);
-        st.setTranslateX(-100);
-        st.setTranslateY(10);
+        StackPane.setAlignment(brt, Pos.TOP_RIGHT);
+        brt.setMaxSize(36,25);
+        brt.setTranslateX(-90);
+        brt.setTranslateY(5);
+        //dimmer button
+        ImageView dim = new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\dullsun.png");
+        Button dul = new Button("", dim);
+        dul.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 35px; -fx-min-height: 35px; -fx-max-width: 35px; -fx-max-height: 35px");
+        dul.setOnMouseEntered((e) -> {
+            dul.setStyle("-fx-background-color: #DBDBC3; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 35px; -fx-min-height: 35px; -fx-max-width: 35px; -fx-max-height: 35px");
+        });
+        dul.setOnMouseExited((e) -> {
+            dul.setStyle("-fx-background-color: #F5F5DC; -fx-font-size: 2em; -fx-text-fill: #ffffff; -fx-background-radius: 5em; -fx-min-width: 35px; -fx-min-height: 35px; -fx-max-width: 35px; -fx-max-height: 35px");
+        });
+        StackPane.setAlignment(dul, Pos.TOP_RIGHT);
+        dul.setMaxSize(36,25);
+        dul.setTranslateX(-90);
+        dul.setTranslateY(60);
+        //dimmer button creation
+        ColorAdjust dimmed = new ColorAdjust();
+        dimmed.setBrightness(-0.5);
+        ColorAdjust deflt = new ColorAdjust();
+        deflt.setBrightness(0.0);
+
+        dul.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                root.setEffect(dimmed);}
+        });
+        brt.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                root.setEffect(deflt);
+            }
+        });
 
         //create tan panels
         Shape tSide = new Rectangle(1280.0D, 100.0D, Paint.valueOf("#C2C2AA"));
@@ -144,9 +175,9 @@ public class Main extends Application {
         hServer.setBackground(null);
         settings.setBackground(null);
         //Font font = Font.font("Courier New", FontWeight.BOLD, 24);
-        // jServer.setFont(font);//set fonts
-        // hServer.setFont(font);
-        // settings.setFont(font);
+       // jServer.setFont(font);//set fonts
+       // hServer.setFont(font);
+       // settings.setFont(font);
         jServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
         hServer.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
         settings.setStyle("-fx-background-color: transparent; -fx-font-family: Courier New; -fx-text-fill: #ffffff; -fx-font-size: 2em; -fx-font-weight: bold; -fx-text-stroke: black; -fx-stroke-width: 3");
@@ -170,71 +201,13 @@ public class Main extends Application {
         hServer.setTranslateY(25);
         settings.setTranslateY(25);
 
+        //set brightness feature
 
 
-        root.getChildren().addAll(new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\online.jpg"),rSide,tSide, pp, st, jServer, hServer, settings);
+        root.getChildren().addAll(new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\online.jpg"),rSide,tSide, pp, brt, dul, jServer, hServer, settings);
         return new Scene(root);
     }
 
-    /*public void startt(Stage primaryStage) throws IOException {
-        StackPane root = new StackPane();
-        Button login = new Button("-->");
-
-        login.setOnMouseEntered((e) -> {
-            login.setStyle("-fx-background-color: #9c8867; -fx-font-size: 2em; -fx-text-fill: #ffffff");
-        });
-        login.setOnMouseExited((e) -> {
-            login.setStyle("-fx-background-color: #948c7e; -fx-font-size: 2em; -fx-text-fill: #ffffff");
-        });
-        login.setStyle("-fx-background-color: #948c7e; -fx-font-size: 2em; -fx-text-fill: #ffffff");
-        Shape wSide = new Rectangle(350.0D, 720.0D, Paint.valueOf("ffffff"));
-        TextField userText = new TextField();
-        userText.setMaxWidth(150.0D);
-        PasswordField pwdText = new PasswordField();
-        pwdText.setMaxWidth(150.0D);
-        Label userName = new Label("Username:");
-        Label pw = new Label("Password:");
-        Label menuTitle = new Label("TutorU", new ImageView(new Image(new FileInputStream("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\icon2.png"))));
-        menuTitle.setStyle("-fx-background-color: rgba(0, 100, 100, 0.0); -fx-font-size: 2em; -fx-text-fill: #000000");
-        StackPane.setAlignment(menuTitle, Pos.TOP_LEFT);
-        StackPane.setAlignment(login, Pos.CENTER_LEFT);
-        StackPane.setAlignment(userText, Pos.CENTER_LEFT);
-        StackPane.setAlignment(pwdText, Pos.CENTER_LEFT);
-        StackPane.setAlignment(userName, Pos.CENTER_LEFT);
-        StackPane.setAlignment(pw, Pos.CENTER_LEFT);
-        StackPane.setAlignment(wSide, Pos.CENTER_LEFT);
-        menuTitle.setTranslateX(100.0D);
-        userText.setTranslateX(100.0D);
-        userText.setTranslateY(-140.0D);
-        userName.setTranslateX(100.0D);
-        userName.setTranslateY(-160.0D);
-        pwdText.setTranslateX(100.0D);
-        pwdText.setTranslateY(-90.0D);
-        pw.setTranslateX(100.0D);
-        pw.setTranslateY(-110.0D);
-        login.setTranslateX(140.0D);
-        login.setTranslateY(50.0D);
-        root.getChildren().addAll(new Node[]{new ImageView("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\MainB.png"), wSide, login, userText, pwdText, pw, userName, menuTitle});
-        Scene scene = new Scene(root);
-        Image icon = new Image("C:\\Users\\ethan\\IdeaProjects\\CapStone\\src\\icon.png");
-        primaryStage.getIcons().add(icon);
-
-        //customizing size of the stage
-        primaryStage.setTitle("TutorU");
-        primaryStage.setWidth(1280.0D);
-        primaryStage.setHeight(720.0D);
-        primaryStage.setResizable(false);
-        //full screen options
-        primaryStage.setFullScreen(false);
-        primaryStage.setFullScreenExitHint("ESCAPE BY PRESSING q");
-        primaryStage.setFullScreenExitKeyCombination(KeyCombination.valueOf("q"));
-
-
-
-        //setting the scene of the stage and presenting it
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }*/
 
     public static void main(String[] args) {
         Application.launch(args);
