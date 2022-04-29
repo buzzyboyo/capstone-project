@@ -1,4 +1,7 @@
-
+html{
+    height: 720px;
+    width: 1280;
+}
 body{
     display: flex;
     /*align-items: center;*/
@@ -7,6 +10,8 @@ body{
     height: 100vh;
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-image: url("MainB.png");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 input{
