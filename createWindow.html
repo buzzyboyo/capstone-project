@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Create User Menu</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label>Enter Username</label>
+            <input type="text" id="potentialUser" autofocus>
+            <label>Enter Password</label>
+            <input type="text" id="potentialPwd">
+        </div>
+        <button type="submit">Create Account</button>
+    </form>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitForm);
+
+        function submitForm(e){
+            e.preventDefault();
+            const item = document.querySelector('#potentialUser').value;
+            ipcRenderer.send('potentialUser:add', item);
+        }
+    </script>
+</body>
+</html>
